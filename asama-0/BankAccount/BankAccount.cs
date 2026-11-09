@@ -14,3 +14,19 @@
 // 1. Throw an error if the amount is zero or negative
 // 2. Throw an "Insufficient funds" error if the amount is greater than the balance
 // 3. Otherwise, subtract the amount from the balance
+
+// ===== DAY 3: Transaction history and menu =====
+// Transaction history
+// 1. Create a Transaction class: type (Deposit/Withdraw), amount, date, balance after
+// 2. Keep a list of transactions inside BankAccount (List<Transaction>)
+// 3. After every successful deposit or withdraw, add a new transaction to the list
+// 4. Show the history: print every transaction with foreach
+
+// Console menu (will move to Program.cs)
+// 1. Show options: 1) Deposit 2) Withdraw 3) Balance 4) History 0) Exit
+// 2. Read the user's choice and use switch-case
+// 3. Repeat the menu with a while loop until the user chooses Exit
+// 4. If the input is not a number, show a warning instead of crashing
+
+// Debugger
+// 1. Put a breakpoint inside Withdraw and watch the balance change step by step
