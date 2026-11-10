@@ -30,3 +30,9 @@
 
 // Debugger
 // 1. Put a breakpoint inside Withdraw and watch the balance change step by step
+
+// ===== DAY 4: Rewrite from memory =====
+// 1. Close all files and do not look at the Day 1-3 code
+// 2. Create a new project: asama-0/BankAccountRewrite
+// 3. Rewrite BankAccount, Deposit, Withdraw, history and menu from memory
+// 4. Time limit: 45 minutes, then compare with the original and note the differences
