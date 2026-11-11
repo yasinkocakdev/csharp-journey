@@ -1,9 +1,13 @@
 ﻿public class BankAccount
 {
-	public string Owner { get; set; }
+	private List<Transaction> _transactions = new List<Transaction>();
+	
+	public string Owner { get; }
 	public decimal Balance { get; private set; }
+	
 	public BankAccount(string owner, decimal initialBalance)
 	{
+		
 		if (initialBalance < 0)
 		{
 			throw new ArgumentOutOfRangeException(nameof(initialBalance), initialBalance, "Initial balance cannot be negative");			
@@ -12,15 +16,75 @@
 		Owner = owner;
 		Balance = initialBalance;
 	}
+
+	public void Deposit(decimal amount)
+	{
+		if (amount <= 0)
+			throw new ArgumentOutOfRangeException(nameof(amount), amount, "Deposit amount must be positive");
+		
+		Balance += amount;
+	}
+
+	public void Withdraw(decimal amount)
+	{
+		if (amount <= 0)
+		{
+			throw new ArgumentOutOfRangeException(nameof(amount), amount, "Withdraw amount must be positive");
+		}
+
+		if (amount > Balance)
+		{
+			throw new InvalidOperationException("Insufficient funds");
+		}
+
+		Balance -= amount;
+	}
 }
 
+public class Transaction
+{
+	public string Type { get; set; } //deposit or withdraw
+	
+	public decimal Amount { get; set; }
+	public DateTime Date { get; set; }
+	public decimal BalanceAfter{ get; set; }
+
+	public Transaction(string type, decimal amount, DateTime date, decimal balanceAfter)
+	{
+		Type = type;
+		Amount = amount;
+		Date = date;
+		BalanceAfter = balanceAfter;
+		
+	}
+}
 
 public class Program
 {
 	public static void Main()
 	{
-		BankAccount bankAccount = new BankAccount("John Doe", -25m);
-		Console.WriteLine(bankAccount.Balance);
-		Console.WriteLine(bankAccount.Owner);
-	}
-}
+		BankAccount bankAccount = new BankAccount("John Doe", 100m);
+		bankAccount.Deposit(50m);
+		Console.WriteLine($"Bakiye: {bankAccount.Balance}");
+
+		try
+		{
+        bankAccount.Withdraw(500m);
+		}
+		catch (Exception ex)
+		{
+			Console.WriteLine($"Hata: {ex.Message}");
+			
+		}
+		
+		try
+		{
+			bankAccount.Withdraw(-10m);
+		}
+		catch (Exception ex)
+		{
+			Console.WriteLine($"Hata: {ex.Message}");
+ 			
+		}
+	}	
+}	
