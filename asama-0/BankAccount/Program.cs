@@ -45,9 +45,9 @@ public class Transaction
 {
 	public string Type { get; set; } //deposit or withdraw
 	
-	public decimal Amount { get; set; }
-	public DateTime Date { get; set; }
-	public decimal BalanceAfter{ get; set; }
+	public decimal Amount { get; }
+	public DateTime Date { get; }
+	public decimal BalanceAfter{ get; }
 
 	public Transaction(string type, decimal amount, DateTime date, decimal balanceAfter)
 	{
