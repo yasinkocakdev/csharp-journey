@@ -43,7 +43,7 @@
 
 public class Transaction
 {
-	public string Type { get; set; } //deposit or withdraw
+	public string Type { get; } //deposit or withdraw
 	
 	public decimal Amount { get; }
 	public DateTime Date { get; }
