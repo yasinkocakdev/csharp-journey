@@ -23,7 +23,7 @@
 			throw new ArgumentOutOfRangeException(nameof(amount), amount, "Deposit amount must be positive");
 		
 		Balance += amount;
-	}
+		_transactions.Add(new Transaction("deposit", amount, DateTime.Now, Balance));	}
 
 	public void Withdraw(decimal amount)
 	{
@@ -38,8 +38,18 @@
 		}
 
 		Balance -= amount;
-	}
+		_transactions.Add(new Transaction("withdraw", amount, DateTime.Now, Balance));
+		
+	
+		
 }
+	public void PrintHistory()
+	{
+		foreach (Transaction t in _transactions)
+		{
+			Console.WriteLine($"{t.Date:dd.MM.yyyy HH:mm}  {t.Type}  {t.Amount}  → {t.BalanceAfter}");
+		}
+	}
 
 public class Transaction
 {
@@ -57,7 +67,9 @@ public class Transaction
 		BalanceAfter = balanceAfter;
 		
 	}
+	
 }
+
 
 public class Program
 {
@@ -86,5 +98,7 @@ public class Program
 			Console.WriteLine($"Hata: {ex.Message}");
  			
 		}
+		bankAccount.PrintHistory();  
 	}	
 }	
+}
